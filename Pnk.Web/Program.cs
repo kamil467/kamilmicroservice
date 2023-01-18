@@ -1,3 +1,10 @@
+using AutoMapper;
+using Microsoft.AspNetCore.Mvc;
+using Pnk.Web.Models.Configuration;
+using Pnk.Web.Models.Mapper;
+using Pnk.Web.Services.Implementations;
+using Pnk.Web.Services.IServices;
+
 namespace Pnk.Web
 {
     public class Program
@@ -7,7 +14,33 @@ namespace Pnk.Web
             var builder = WebApplication.CreateBuilder(args);
 
             // Add services to the container.
-            builder.Services.AddControllersWithViews();
+
+
+            builder.Services.AddControllersWithViews()
+                .AddJsonOptions(o =>
+                {
+                   
+                });
+                //.AddNewtonsoftJson(o =>
+                //{
+                //    o.SerializerSettings.SerializationBinder = new Newtonsoft.Json.Serialization.DefaultSerializationBinder();
+                //    o.SerializerSettings.ContractResolver = new Newtonsoft.Json.Serialization.DefaultContractResolver();
+
+
+                //});
+            builder.Services.AddOptions<ServiceURLConfiguration>()
+               .Bind(builder.Configuration.GetSection(ServiceURLConfiguration.ServiceURLSectionName));
+
+            builder.Services.AddHttpClient<IProductService, Service>();
+            builder.Services.AddScoped<IBaseService, BaseService>();
+            builder.Services.AddScoped<IProductService, Service>();
+            
+           
+
+            var mapper = MappingConfiguration.GetMappingConfiguration().CreateMapper();
+            builder.Services.AddSingleton(mapper);
+
+            builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
             var app = builder.Build();
 
@@ -19,6 +52,7 @@ namespace Pnk.Web
                 app.UseHsts();
             }
 
+         
             app.UseHttpsRedirection();
             app.UseStaticFiles();
 

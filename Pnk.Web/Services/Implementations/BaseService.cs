@@ -20,7 +20,7 @@ namespace Pnk.Web.Services.Implementations
 
         public void Dispose()
         {
-            throw new NotImplementedException();
+            GC.SuppressFinalize(true);
         }
 
         public async Task<T> SendRequestAysnc<T>(APIRequest aPIRequest)
