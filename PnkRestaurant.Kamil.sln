@@ -5,11 +5,13 @@ VisualStudioVersion = 17.3.32825.248
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "FrontEnd", "FrontEnd", "{B208BC56-5688-4929-AE26-7B5293EBE41D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pnk.Web", "Pnk.Web\Pnk.Web.csproj", "{D3B12A9C-4629-4660-8C3A-4C992F7F317B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Pnk.Web", "Pnk.Web\Pnk.Web.csproj", "{D3B12A9C-4629-4660-8C3A-4C992F7F317B}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{1D152B95-C483-4743-B73F-74678C14A659}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pnk.Services.ProductAPI", "Pnk.Services.ProductAPI\Pnk.Services.ProductAPI.csproj", "{1D69FA0E-64ED-482D-852C-D07CE4BAF3D2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Pnk.Services.ProductAPI", "Pnk.Services.ProductAPI\Pnk.Services.ProductAPI.csproj", "{1D69FA0E-64ED-482D-852C-D07CE4BAF3D2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IdentityServer", "IdentityServer\IdentityServer.csproj", "{1FE7A15B-39A7-461F-85AE-4E197E20FF99}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -25,6 +27,10 @@ Global
 		{1D69FA0E-64ED-482D-852C-D07CE4BAF3D2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1D69FA0E-64ED-482D-852C-D07CE4BAF3D2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1D69FA0E-64ED-482D-852C-D07CE4BAF3D2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1FE7A15B-39A7-461F-85AE-4E197E20FF99}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1FE7A15B-39A7-461F-85AE-4E197E20FF99}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1FE7A15B-39A7-461F-85AE-4E197E20FF99}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1FE7A15B-39A7-461F-85AE-4E197E20FF99}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -32,6 +38,7 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{D3B12A9C-4629-4660-8C3A-4C992F7F317B} = {B208BC56-5688-4929-AE26-7B5293EBE41D}
 		{1D69FA0E-64ED-482D-852C-D07CE4BAF3D2} = {1D152B95-C483-4743-B73F-74678C14A659}
+		{1FE7A15B-39A7-461F-85AE-4E197E20FF99} = {1D152B95-C483-4743-B73F-74678C14A659}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {51A9FD95-227A-44AB-A648-6C7297E559EC}

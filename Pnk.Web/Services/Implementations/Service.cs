@@ -23,7 +23,7 @@ namespace Pnk.Web.Services.Implementations
             {
                 CallType = ServiceConfiguration.CallType.POST,
                 Payload = productDto,
-                RequestURL = ServiceConfiguration.ProductAPIBase + "/api/productapi/createproduct",
+                RequestURL = this.options.Value.ProductAPIBaseUrl + "/" + this.options.Value.CreateProduct
 
             };
 
@@ -54,7 +54,7 @@ namespace Pnk.Web.Services.Implementations
             {
                 CallType = ServiceConfiguration.CallType.GET,
                 
-                RequestURL = ServiceConfiguration.ProductAPIBase + "/api/productapi/getproduct/" + id,
+                RequestURL = this.options.Value.ProductAPIBaseUrl + "/"+this.options.Value.GetProductById+ "/"+ id,
 
             };
 
@@ -67,7 +67,7 @@ namespace Pnk.Web.Services.Implementations
             {
                 CallType = ServiceConfiguration.CallType.PUT,
                 Payload = productDto,
-                RequestURL = ServiceConfiguration.ProductAPIBase + "/api/productapi/updateproduct",
+                RequestURL = this.options.Value.ProductAPIBaseUrl + "/" + this.options.Value.UpdateProduct
 
             };
 

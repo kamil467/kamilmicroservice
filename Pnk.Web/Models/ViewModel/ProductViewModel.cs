@@ -1,4 +1,6 @@
-﻿namespace Pnk.Web.Models.ViewModel
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace Pnk.Web.Models.ViewModel
 {
     public class ProductViewModel
     {
@@ -7,7 +9,7 @@
 
         public virtual string Name { get; set; }
 
-
+        [Range(1,1000)]
         public virtual double Price { get; set; }
 
         public virtual string Description { get; set; }

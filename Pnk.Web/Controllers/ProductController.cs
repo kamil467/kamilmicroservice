@@ -26,7 +26,7 @@ namespace Pnk.Web.Controllers
         }
 
         [HttpGet]
-        [Route("list-products")]
+        [Route("list-products",Name ="listproducts")]
         public async Task<IActionResult> ListAllProducts()
         {
             try
@@ -51,10 +51,78 @@ namespace Pnk.Web.Controllers
                     StatusCode = 500
 
                 };
-                return View(errorViewModel);
+                return View("~/Views/Shared/Error.cshtml", errorViewModel);
 
             }
         }
 
+        [HttpGet]
+        [Route("updateproduct-get/{id}")]
+        public async Task<IActionResult> UpdateProduct(int id)
+        {
+            try
+            {
+                var product = await this.productService.GetProductByIDAsync<ResponseDto>(id);
+                if(product.IsSuccess && product.Result != null)
+                {
+                    var productFromResponse = JsonConvert.DeserializeObject<ProductDto>(product.Result.ToString());
+                    var viewModel = this.mapper.Map<ProductViewModel>(productFromResponse);
+                    return View("UpdateProduct", viewModel);
+                }
+
+                return View("~/Views/Shared/Error.cshtml", new ErrorViewModel { DisplayMessage="Unable to perform the operation."});
+
+
+            }
+            catch(Exception exe)
+            {
+                return View("~/Views/Shared/Error.cshtml", new ErrorViewModel { DisplayMessage = "Unable to perform the operation."+exe.ToString() });
+            }
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken] // tokens by default added in the startup services.
+        [Route("updateproduct-post")]
+        public async Task<IActionResult> UpdateProduct(ProductViewModel productViewModel)
+        {
+            if(ModelState.IsValid)
+            {
+                var productDTO = this.mapper.Map<ProductDto>(productViewModel);
+                var result = await this.productService.UpdateProductASync<ResponseDto>(productDTO);
+                if(result.IsSuccess)
+                {
+                    return this.RedirectToAction("list-products");
+                }
+
+                return View("~/Views/Shared/Error.cshtml", new ErrorViewModel { DisplayMessage = "Unable to perform the operation." });
+
+            }
+            return View("~/Views/Shared/Error.cshtml", new ErrorViewModel { DisplayMessage = "Unable to perform the operation." });
+        }
+
+        [HttpGet]
+        [Route("createproduct-get")]
+        public IActionResult CreateProduct()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        [Route("createproduct-post")]
+        public async Task<IActionResult> CreateProduct(ProductViewModel productViewModel)
+        {
+            if(this.ModelState.IsValid)
+            {
+                var productDto = this.mapper.Map<ProductDto>(productViewModel);
+                var result = await this.productService.CreateProductAsync<ResponseDto>(productDto);
+                if(result.IsSuccess && result.Result != null)
+                {
+                   return  this.RedirectToAction("list-products");
+                }
+                return View("~/Views/Shared/Error.cshtml", new ErrorViewModel { DisplayMessage = "Unable to perform the operation." });
+            }
+            return View("~/Views/Shared/Error.cshtml", new ErrorViewModel { DisplayMessage = "Validation Failed" });
+        }
     }
 }

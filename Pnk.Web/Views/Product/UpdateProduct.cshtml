@@ -1,0 +1,42 @@
+﻿@using Pnk.Web.Models.ViewModel
+@model ProductViewModel
+@{
+    ViewData["Title"] = "Update Product";
+}
+<h1>Update Product</h1>
+@using (Html.BeginForm("updateproduct-post","product",FormMethod.Post, new {@id="productupdateform", @class="form-horizontal form-label-left"}))
+{
+
+    <div class="form-group">
+        <label for="product-name">Product Name:</label>
+        <input type="text" class="form-control" id="productnameinput" aria-describedby="productname" placeholder="Enter Product name" asp-for="@Model.Name" value="@Model.Name">
+
+    </div>
+
+    <div class="form-group">
+        <label for="product-description">Product Description:</label>
+        <input type="text" class="form-control" id="productdesinput" aria-describedby="productdesc" placeholder="Enter Product Description" asp-for="@Model.Description" value="@Model.Description">
+
+    </div>
+
+    <div class="form-group">
+        <label for="product-price">Product Price:</label>
+        <input type="text" class="form-control" id="productpriceinput" aria-describedby="productprice" placeholder="Enter Product Price" asp-for="@Model.Price" value="@Model.Price">
+
+    </div>
+
+    <div class="form-group">
+        <label for="product-catename">Product Category Name:</label>
+        <input type="text" class="form-control" id="productcatnameinput" aria-describedby="productcatname" placeholder="Enter Product name" asp-for="@Model.CategoryName" value="@Model.CategoryName">
+
+    </div>
+
+    <div class="form-group">
+        <label for="product-image-url">Product Image URL:</label>
+        <input type="text" class="form-control" id="productimageinput" aria-describedby="productimage" placeholder="Enter Product Image" asp-for="@Model.ImageUrl" value="@Model.ImageUrl">
+    </div>
+    <input type="number" asp-for="@Model.ProductId" hidden />
+    <button type="submit" formmethod="post" class="btn btn-primary">Submit</button>
+
+}
+   

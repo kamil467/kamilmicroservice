@@ -5,6 +5,8 @@
 }
 
 <h1>List of Available Products</h1>
+<a href="createproduct-get" class="btn btn-outline-dark">+ Create New Product</a>
+
 <table class="table">
     <thead>
         <tr>
@@ -13,27 +15,33 @@
             <th scope="col">Name</th>
             <th scope="col">Description</th>
             <th scope="col">Price</th>
+            <th scope="col">Action</th>
         </tr>
     </thead>
 <tbody>
         @{
             foreach (var product in Model)
             {
-                    <tr>
-                    <td>
-                     @product.ProductId
-                    </td>
-                    <td>
-                        @product.Name
-                    </td>
-                    <td>
-                        @product.Description
-                    </td>
-                    <td>
-                        @product.Price
-                    </td>
+                            <tr>
+                            <td>
+                             @product.ProductId
+                            </td>
+                            <td>
+                                @product.Name
+                            </td>
+                            <td>
+                                @product.Description
+                            </td>
+                            <td>
+                                @product.Price
+                            </td>
+                            <td>
 
-                    </tr>
+                        <a href="updateproduct-get/@product.ProductId"  class="btn btn-outline-primary" >Update</a>
+                                   
+                              
+                            </td>
+                            </tr>
             }
     }
    
