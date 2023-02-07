@@ -5,6 +5,7 @@ using Pnk.Services.ProductAPI.Repository;
 
 namespace Pnk.Services.ProductAPI
 {
+    // main program
     public class Program
     {
         public static void Main(string[] args)
